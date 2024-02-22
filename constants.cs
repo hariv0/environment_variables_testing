@@ -1,0 +1,10 @@
+public const string constant_1 = "constant_one";
+public const string constant_2 = "constant_two";
+public const string constant_3 = "constant_three";
+public const string constant_4 = "constant_four";
+public const string constant_5 = "constant_five";
+public const string constant_6 = "constant_six";
+public const string constant_7 = "constant_seven";
+public const string constant_8 = "constant_eight";
+public const string constant_9 = "constant_nine";
+public const string constant_10 = "constant_ten";
