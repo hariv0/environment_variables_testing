@@ -41,7 +41,3 @@ jobs:
 
           # Display the updated content
           Get-Content -Path $filePath
-
-
-# Write the updated content back to the file
-Set-Content -Path $filePath -Value $fileContent
