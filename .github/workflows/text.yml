@@ -1,0 +1,55 @@
+name: Test
+
+on:
+   push:                 
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:    
+
+permissions:
+  contents: read        
+
+jobs:
+  publish_upload:
+    runs-on:  windows-latest 
+    environment: test
+
+    steps:
+      
+      - uses: actions/checkout@v4
+
+      - name: Replace URLs in URLConstants.cs
+        run: |
+          $filePath = "constants.cs"
+          $fileContent = Get-Content -Path $filePath -Raw
+      
+          # Define the regex patterns for each URL constant and its replacement
+          $fileContent = $fileContent -replace 'public const string constant_1 = ".*";', "public const string constant_1 = `"${{ vars.CONSTANT_ONE }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_2 = ".*";', "public const string constant_2 = `"${{ vars.CONSTANT_TWO }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_3 = ".*";', "public const string constant_3 = `"${{ vars.CONSTANT_THREE }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_4 = ".*";', "public const string constant_4 = `"${{ vars.CONSTANT_FOUR }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_5 = ".*";', "public const string constant_5 = `"${{ vars.CONSTANT_FIVE }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_6 = ".*";', "public const string constant_6 = `"${{ vars.CONSTANT_SIX }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_7 = ".*";', "public const string constant_7 = `"${{ vars.CONSTANT_SEVEN }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_8 = ".*";', "public const string constant_8 = `"${{ vars.CONSTANT_EIGHT }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_9 = ".*";', "public const string constant_9 = `"${{ vars.CONSTANT_NINE }}`";"
+          $fileContent = $fileContent -replace 'public const string constant_10 = ".*";', "public const string constant_10 = `"${{ vars.CONSTANT_TEN }}`";"
+
+          # Write the updated content back to the file
+          Set-Content -Path $filePath -Value $fileContent
+
+          # Display the updated content
+          Get-Content -Path $filePath
+
+
+
+# Define the path to the file
+$filePath = "PATH_TO_YOUR_FILE\URLConstants.cs"
+
+# Read the content of the file
+$fileContent = Get-Content -Path $filePath -Raw
+
+
+# Write the updated content back to the file
+Set-Content -Path $filePath -Value $fileContent
