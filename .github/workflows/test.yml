@@ -43,13 +43,5 @@ jobs:
           Get-Content -Path $filePath
 
 
-
-# Define the path to the file
-$filePath = "PATH_TO_YOUR_FILE\URLConstants.cs"
-
-# Read the content of the file
-$fileContent = Get-Content -Path $filePath -Raw
-
-
 # Write the updated content back to the file
 Set-Content -Path $filePath -Value $fileContent
