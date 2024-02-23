@@ -19,13 +19,18 @@ jobs:
       
       - uses: actions/checkout@v4
 
+      - name: name print
+        run: |
+          echo ${{ vars.CONSTANT_SIX }}
+          echo ${{ vars.CONSTANT_TWO }}
+
       - name: Replace URLs in URLConstants.cs
         run: |
           $filePath = "constants.cs"
           $fileContent = Get-Content -Path $filePath -Raw
       
           # Define the regex patterns for each URL constant and its replacement
-          $fileContent = $fileContent -replace 'public const string constant_1 = ".*";', "public const string constant_1 = "${{ vars.CONSTANT_ONE }}";"
+          $fileContent = $fileContent -replace 'public const string constant_1 = ".*";', "public const string constant_1 = "${{ vars.CONSTANT_SIX }}";"
           $fileContent = $fileContent -replace 'public const string constant_2 = ".*";', "public const string constant_2 = "${{ vars.CONSTANT_TWO }}";"
           $fileContent = $fileContent -replace 'public const string constant_3 = ".*";', "public const string constant_3 = "${{ vars.CONSTANT_THREE }}";"
           $fileContent = $fileContent -replace 'public const string constant_4 = ".*";', "public const string constant_4 = "${{ vars.CONSTANT_FOUR }}";"
